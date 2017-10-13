@@ -37,3 +37,5 @@ delete (Node t1 v t2) x
   where
  		ctree2 tree [] = tree
  		ctree2 tree (h:t) = ctree2 (insert tree h) t
+
+lca :: (Ord a) => Tree a -> a -> a -> a
