@@ -39,3 +39,7 @@ delete (Node t1 v t2) x
  		ctree2 tree (h:t) = ctree2 (insert tree h) t
 
 lca :: (Ord a) => Tree a -> a -> a -> a
+lca (Node t1 v t2) p q
+| v > p && v < q = v
+| v > p && v > q = (lca t1 p q)
+| v < p && v < q = (lca t2 p q)
