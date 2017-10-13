@@ -31,6 +31,12 @@ delete (Node t1 v t2) x
  | x  < v = Node (delete t1 x) v t2
  | x  > v = Node t1 v (delete t2 x)
 
+get_max :: (Ord a) => Tree a -> a
+get_max Nil = error "No tree"
+get_max (Node t1 v t2)
+ | t2 /= Nil = get_max t2
+ | otherwise = v
+
  ctree :: (Ord a) => [a] -> Tree a
  ctree [] = Nil
  ctree (h:t) = ctree2 (Node Nil h Nil) t
