@@ -44,3 +44,4 @@ lca (Node t1 v t2) p q
 | v > p && v < q = v
 | v > p && v > q = (lca t1 p q)
 | v < p && v < q = (lca t2 p q)
+| otherwise = v
