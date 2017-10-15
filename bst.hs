@@ -1,4 +1,4 @@
-module LCA where
+module BST where
 import qualified Data.List --List library
 
 data Tree a = Nil | Node (Tree a) a (Tree a)--tree data type
