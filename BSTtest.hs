@@ -5,8 +5,7 @@ import Test.Hspec
 import BSTmain
 main :: IO ()
 main = hspec $ do
---describe "LCA" $ do
-  --it "Returns the lowest common ancestor of nodes within a binary search tree"
+
 describe "test" $ do
   it "returns the lowest common ancestor of nodes 4 and 9; should be 8" $
     mylca 4 9 `shouldBe` 8
