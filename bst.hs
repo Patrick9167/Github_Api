@@ -46,8 +46,8 @@ ctree (h:t) = ctree2 (Node Nil h Nil) t
 
 lca :: (Ord a) => Tree a -> a -> a -> a
 lca (Node t1 v t2) p q
-| contains (Node t1 v t2) p == False || contains (Node t1 v t2) q == False = error "Node not in tree"
-| v > p && v < q = v
-| v > p && v > q = (lca t1 p q)
-| v < p && v < q = (lca t2 p q)
-| otherwise = v
+ | contains (Node t1 v t2) p == False || contains (Node t1 v t2) q == False = error "Node not in tree"
+ | v > p && v < q = v
+ | v > p && v > q = (lca t1 p q)
+ | v < p && v < q = (lca t2 p q)
+ | otherwise = v
