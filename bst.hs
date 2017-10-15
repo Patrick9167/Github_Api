@@ -40,11 +40,12 @@ get_max (Node t1 v t2)
 ctree :: (Ord a) => [a] -> Tree a
 ctree [] = Nil
 ctree (h:t) = ctree2 (Node Nil h Nil) t
-  where
- 		ctree2 tree [] = tree
- 		ctree2 tree (h:t) = ctree2 (insert tree h) t
+ where
+ ctree2 tree [] = tree
+ ctree2 tree (h:t) = ctree2 (insert tree h) t
 
 lca :: (Ord a) => Tree a -> a -> a -> a
+lca Nil _ _ = error "Null tree"
 lca (Node t1 v t2) p q
  | contains (Node t1 v t2) p == False || contains (Node t1 v t2) q == False = error "Node not in tree"
  | v > p && v < q = v
