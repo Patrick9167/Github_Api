@@ -52,3 +52,8 @@ lca (Node t1 v t2) p q
  | v > p && v > q = (lca t1 p q)
  | v < p && v < q = (lca t2 p q)
  | otherwise = v
+
+ data DAG a = Nil | Node a [DAG a]
+   deriving (Show, Eq)
+
+ myDAG = Node 0 [Node 1 [Node 2 [Node 3 [Node 6 [Nil]]]], Node 4 [Node 5 [Node 6 [Nil]]]]
