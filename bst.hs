@@ -61,3 +61,6 @@ type DAG = [Dnode]
 
 mydag = [Elem 0[1], Elem 1[2,4], Elem 2[3],
            Elem 3[6], Elem 4[5], Elem 5[6], Elem 6[]]
+
+nodeMatch :: Int -> Dnode -> Bool
+nodeMatch v (Elem x y) = x == v
