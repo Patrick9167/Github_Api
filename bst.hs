@@ -1,5 +1,5 @@
 module BST where
-import qualified Data.List --List library
+import Data.List --List library
 
 data Tree a = Nil | Node (Tree a) a (Tree a)--tree data type
  deriving (Show, Eq)
@@ -61,6 +61,16 @@ type DAG = [Dnode]
 
 mydag = [Elem 0[1], Elem 1[2,4], Elem 2[3],
            Elem 3[6], Elem 4[5], Elem 5[6], Elem 6[]]
+
+path :: DAG -> Int -> Int -> [[Int]]
+path d x y
+ | x == y =[[x]]
+ | otherwise = case find (nodeMatch y) d of
+   Just(Elem _ []) -> [[y]]
+   Just(Elem _ a) -> map (y:)
+                    $ filter(\a  -> last a ==x)
+                    $ concatMap (path d x) a
+   Nothing -> []
 
 nodeMatch :: Int -> Dnode -> Bool
 nodeMatch v (Elem x y) = x == v
