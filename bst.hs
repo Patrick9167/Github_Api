@@ -53,12 +53,11 @@ lca (Node t1 v t2) p q
  | v < p && v < q = (lca t2 p q)
  | otherwise = v
 
- data DAG a = Nil | Node a [DAG a]
-   deriving (Show, Eq)
 
- myDAG = Node 0 [Node 1 [Node 2 [Node 3 [Node 6 [Nil]]]], Node 4 [Node 5 [Node 6 [Nil]]]]
+data Dnode = Elem Int [Int]
+  deriving (Show, Eq)
 
- addEdge :: (Ord a) => DAG a -> a -> DAG a
- addEdge (Node a d) x  = Node a (z:d)
-   where
-     z= Node x []
+type DAG = [Dnode]
+
+mydag = [Elem 0[1], Elem 1[2,4], Elem 2[3],
+           Elem 3[6], Elem 4[5], Elem 5[6], Elem 6[]]
