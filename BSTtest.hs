@@ -6,7 +6,7 @@ import BSTmain
 main :: IO ()
 main = hspec $ do
 
-describe "test" $ do
+describe "LCA Binary Search Tree Tests" $ do
   it "returns the lowest common ancestor of nodes 4 and 9; should be 8" $
     shouldBe (mylca 4 9)  8
 
@@ -42,3 +42,23 @@ describe "test" $ do
 
   it "ERROR test: second node not tree" $
     mylca 7 3 `shouldBe` error "Node not in tree"
+
+  --Directed Acyclic Graph LCA tests
+describe "LCA Directed Acyclic Graph Tests" $ do
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 0 0 `shouldBe` [0]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 1 1 `shouldBe` [1]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 4 3 `shouldBe` [3]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 3 4 `shouldBe` [3]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 5 4 `shouldBe` [2,1]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+    daglca 4 5 `shouldBe` [1,2]

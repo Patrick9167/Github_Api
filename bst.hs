@@ -17,19 +17,19 @@ contains (Node t1 v t2) x
  | x  > v = contains t2 x
 
 {- BASIC Manipulation -}
-insert :: (Ord a) => Tree a -> a -> Tree a
-insert Nil x = Node Nil x Nil
-insert (Node t1 v t2) x
+insertN :: (Ord a) => Tree a -> a -> Tree a
+insertN Nil x = Node Nil x Nil
+insertN (Node t1 v t2) x
  | v == x = Node t1 v t2
- | v  < x = Node t1 v (insert t2 x)
- | v  > x = Node (insert t1 x) v t2
+ | v  < x = Node t1 v (insertN t2 x)
+ | v  > x = Node (insertN t1 x) v t2
 
-delete :: (Ord a) => Tree a -> a -> Tree a
-delete Nil _ = Nil
-delete (Node t1 v t2) x
+deleteN :: (Ord a) => Tree a -> a -> Tree a
+deleteN Nil _ = Nil
+deleteN (Node t1 v t2) x
  | contains (Node t1 v t2) x == False = error "Node not in tree"
- | x  < v = Node (delete t1 x) v t2
- | x  > v = Node t1 v (delete t2 x)
+ | x  < v = Node (deleteN t1 x) v t2
+ | x  > v = Node t1 v (deleteN t2 x)
 
 get_max :: (Ord a) => Tree a -> a
 get_max Nil = error "No tree"
@@ -42,7 +42,7 @@ ctree [] = Nil
 ctree (h:t) = ctree2 (Node Nil h Nil) t
  where
  ctree2 tree [] = tree
- ctree2 tree (h:t) = ctree2 (insert tree h) t
+ ctree2 tree (h:t) = ctree2 (insertN tree h) t
 
 lca :: (Ord a) => Tree a -> a -> a -> a
 lca Nil _ _ = error "Null tree"
@@ -59,8 +59,7 @@ data Dnode = Elem Int [Int]
 
 type DAG = [Dnode]
 
-mydag = [Elem 0[1], Elem 1[2,4], Elem 2[3],
-           Elem 3[6], Elem 4[5], Elem 5[6], Elem 6[]]
+
 
 path :: DAG -> Int -> Int -> [[Int]]
 path d x y
@@ -74,3 +73,23 @@ path d x y
 
 nodeMatch :: Int -> Dnode -> Bool
 nodeMatch v (Elem x y) = x == v
+
+lcaDAG :: DAG -> Int -> Int -> Int-> [Int]
+lcaDAG d n1 n2 root
+ | n1 == n2 = [n1]
+ | otherwise = findMatch (path d n1 root) (path d n2 root)
+
+findMatch :: [[Int]] -> [[Int]] -> [Int]
+findMatch [] _ = []
+findMatch (h:t) p
+  = case comp (reverse h) p of
+   Just x -> (x:)
+               $ findMatch t p
+   Nothing -> findMatch t p
+
+comp :: [Int] -> [[Int]] -> Maybe Int
+comp _ [] = Nothing
+comp (h:t) (c:p)
+  = case h `elem` c of
+   True -> Just h
+   False -> comp (h:t) p
