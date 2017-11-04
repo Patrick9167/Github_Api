@@ -45,20 +45,29 @@ describe "LCA Binary Search Tree Tests" $ do
 
   --Directed Acyclic Graph LCA tests
 describe "LCA Directed Acyclic Graph Tests" $ do
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+  it "returns the lca of the same node 0 for given DAG; should be [0]" $
     daglca 0 0 `shouldBe` [0]
 
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+  it "returns the lca of the same node 1 for given DAG; should be [1]" $
     daglca 1 1 `shouldBe` [1]
 
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+  it "returns the lca of nodes 4 and 3 for given DAG; should be [3]" $
     daglca 4 3 `shouldBe` [3]
 
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+  it "returns the lca of nodes 3 and 4 for given DAG; should be [3]" $
     daglca 3 4 `shouldBe` [3]
 
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
-    daglca 5 4 `shouldBe` [2,1]
+  it "returns the lca of nodes 5 and 4 for given DAG; should be [1,2]" $
+    daglca 5 4 `shouldBe` [1,2]
 
-  it "returns the lca of nodes 4 and 3 for given DAG; should be 3" $
+  it "returns the lca of nodes 4 and 5 for given DAG; should be [1,2]" $
     daglca 4 5 `shouldBe` [1,2]
+
+  it "ERROR TEST: First node does not exist in given DAG; should be []" $
+    daglca 10 1 `shouldBe` []
+
+  it "ERROR TEST: Second node does not exist in given DAG; should be []" $
+    daglca 4 7 `shouldBe` []
+
+  it "ERROR TEST: Neither node exists in given DAG; should be []" $
+    daglca 10 8 `shouldBe` []
