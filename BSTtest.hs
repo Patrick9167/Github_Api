@@ -6,9 +6,9 @@ import BSTmain
 main :: IO ()
 main = hspec $ do
 
-describe "test" $ do
+describe "LCA Binary Search Tree Tests" $ do
   it "returns the lowest common ancestor of nodes 4 and 9; should be 8" $
-    mylca 4 9 `shouldBe` 8
+    shouldBe (mylca 4 9)  8
 
   it "returns the lowest common ancestor of nodes 9 and 4; should be 8" $
     mylca 9 4 `shouldBe` 8
@@ -42,3 +42,32 @@ describe "test" $ do
 
   it "ERROR test: second node not tree" $
     mylca 7 3 `shouldBe` error "Node not in tree"
+
+  --Directed Acyclic Graph LCA tests
+describe "LCA Directed Acyclic Graph Tests" $ do
+  it "returns the lca of the same node 0 for given DAG; should be [0]" $
+    daglca 0 0 `shouldBe` [0]
+
+  it "returns the lca of the same node 1 for given DAG; should be [1]" $
+    daglca 1 1 `shouldBe` [1]
+
+  it "returns the lca of nodes 4 and 3 for given DAG; should be [3]" $
+    daglca 4 3 `shouldBe` [3]
+
+  it "returns the lca of nodes 3 and 4 for given DAG; should be [3]" $
+    daglca 3 4 `shouldBe` [3]
+
+  it "returns the lca of nodes 5 and 4 for given DAG; should be [1,2]" $
+    daglca 5 4 `shouldBe` [1,2]
+
+  it "returns the lca of nodes 4 and 5 for given DAG; should be [1,2]" $
+    daglca 4 5 `shouldBe` [1,2]
+
+  it "ERROR TEST: First node does not exist in given DAG; should be []" $
+    daglca 10 1 `shouldBe` []
+
+  it "ERROR TEST: Second node does not exist in given DAG; should be []" $
+    daglca 4 7 `shouldBe` []
+
+  it "ERROR TEST: Neither node exists in given DAG; should be []" $
+    daglca 10 8 `shouldBe` []
