@@ -1,0 +1,15 @@
+Configuring old-locale-1.0.0.7...
+Building old-locale-1.0.0.7...
+Preprocessing library old-locale-1.0.0.7...
+[1 of 1] Compiling System.Locale    ( System\Locale.hs, .stack-work\dist\ca59d0ab\build\System\Locale.o )
+Installing library in
+C:\sr\snapshots\518da490\lib\x86_64-windows-ghc-8.0.2\old-locale-1.0.0.7-KGBP1BSKxH5GCm0LnZP04j
+Registering old-locale-1.0.0.7...
+Cabal-simple_Z6RU0evB_1.24.2.0_ghc-8.0.2.exe:
+'C:\Users\patri\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.2\bin\ghc-pkg.EXE'
+exited with an error:
+old-locale-1.0.0.7: Warning: haddock-interfaces:
+C:\sr\snapshots\518da490\doc\old-locale-1.0.0.7\old-locale.haddock doesn't
+exist or isn't a file
+ghc-pkg.EXE: C:\sr\snapshots\518da490\pkgdb\package.cache: you don't have
+permission to modify this file
