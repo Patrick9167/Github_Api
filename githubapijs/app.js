@@ -1,12 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var authToutes = requir('./toutes/auth-routes');
-//var express-validator = require('express-validator');
 var Github = require('github-api');
 var app = express();
 var request = require('request');
 var d3 = require('d3');
+var fs = require('fs');
 
 
 var options = {
@@ -16,14 +15,25 @@ var options = {
   }
 };
 
+fs.truncate('views/rand.csv', 0, function(){});// clear file
+
 function callback(error, response, body) {
   if (!error && response.statusCode == 200) {
     var info = JSON.parse(body);
-
+    fs.appendFile('views/rand.csv', "id,value\n", function(){});//csv file requirements
+    fs.appendFile('views/rand.csv', JSON.stringify(info.login)+",", function(err) {
+    if(err) {
+        console.log('there was an error: ', err);
+        return;
+    }
+    console.log('data was appended to file');
+});
   }
 }
 
 request(options, callback);
+
+
 
 //View Engine Middleware
 app.set('view engine', 'ejs'); //set views to ejs
