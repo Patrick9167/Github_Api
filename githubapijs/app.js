@@ -9,7 +9,7 @@ var fs = require('fs');
 
 
 var options = {
-  url: 'https://api.github.com/users/patrick9167',
+  url: 'https://api.github.com/orgs/electronicarts/repos',
   headers: {
     'User-Agent': 'request'
   }
@@ -17,17 +17,51 @@ var options = {
 
 fs.truncate('views/rand.csv', 0, function(){});// clear file
 
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    var info = JSON.parse(body);
-    fs.appendFile('views/rand.csv', "id,value\n", function(){});//csv file requirements
-    fs.appendFile('views/rand.csv', JSON.stringify(info.login)+",", function(err) {
+function formatFrequency(data) {
+  var langs=[];
+  var count=[];
+  var indicator = 0;
+  var j=0;
+  for(var i=0; i<data.length; i++)
+  {
+    indicator=0;
+    j=0;
+    while(langs[j]!=null)
+    {
+      if(langs[j]==data[i].language)
+      {
+        indicator=1;
+        count[j]++;
+      }
+      j++;
+    }
+    if(indicator==0)
+    {
+      langs.push(data[i].language);
+      count.push(1);
+    }
+  }
+
+
+  for(var k = 0; k<langs.length; k++)
+  {
+    fs.appendFile('views/rand.csv', JSON.stringify(langs[k])+", " + (count[k]*1000)+ "\n", function(err) {
     if(err) {
         console.log('there was an error: ', err);
         return;
     }
     console.log('data was appended to file');
-});
+  });
+}
+
+}
+
+
+function callback(error, response, body) {
+  if (!error && response.statusCode == 200) {
+    var info = JSON.parse(body);
+    fs.appendFile('views/rand.csv', "id,value\n", function(){});//csv file requirements
+    formatFrequency(info);
   }
 }
 
@@ -43,6 +77,7 @@ app.use(express.static(path.join(__dirname, 'views')));
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+//app.use('/auth', authRoutes);
 
 app.get('/', function(req, res){ //main output
   res.render('index');
@@ -55,17 +90,3 @@ app.post('/users/add', function(req, res){
 app.listen(3000, function(){ //local host
   console.log('Server started on port 3000....');
 });
-
-
-
-//JSON parsing
-// var people = [
-//   {
-//     name:'Patrick',
-//     age: 20
-//   },
-// ]
-//
-// app.get('/', function(req, res){
-//   res.json(people);
-// });
