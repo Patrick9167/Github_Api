@@ -6,12 +6,14 @@ var app = express();
 var request = require('request');
 var d3 = require('d3');
 var fs = require('fs');
+var authRoutes = require('./routes/auth-routes');
 
-
+// var urlywurly = 'http' +'s://api.github.com/orgs/' + butt + 'repos',
 var options = {
-  url: 'https://api.github.com/orgs/electronicarts/repos',
+  url: 'https://api.github.com/orgs/facebook/repos',
   headers: {
-    'User-Agent': 'request'
+    'User-Agent': 'request',
+    'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
   }
 };
 
@@ -45,7 +47,7 @@ function formatFrequency(data) {
 
   for(var k = 0; k<langs.length; k++)
   {
-    fs.appendFile('views/rand.csv', JSON.stringify(langs[k])+", " + (count[k]*1000)+ "\n", function(err) {
+    fs.appendFile('views/rand.csv', JSON.stringify(langs[k])+", " + (count[k])+ "\n", function(err) {
     if(err) {
         console.log('there was an error: ', err);
         return;
@@ -77,10 +79,11 @@ app.use(express.static(path.join(__dirname, 'views')));
 //Body Parser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-//app.use('/auth', authRoutes);
+
+app.use('/auth', authRoutes);
 
 app.get('/', function(req, res){ //main output
-  res.render('index');
+  res.render('index.ejs');
 });
 
 app.post('/users/add', function(req, res){
