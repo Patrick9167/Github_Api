@@ -6,16 +6,7 @@ var app = express();
 var request = require('request');
 var d3 = require('d3');
 var fs = require('fs');
-var authRoutes = require('./routes/auth-routes');
 
-// var urlywurly = 'http' +'s://api.github.com/orgs/' + butt + 'repos',
-var options = {
-  url: 'https://api.github.com/orgs/facebook/repos',
-  headers: {
-    'User-Agent': 'request',
-    'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
-  }
-};
 
 fs.truncate('views/rand.csv', 0, function(){});// clear file
 
@@ -44,7 +35,6 @@ function formatFrequency(data) {
     }
   }
 
-
   for(var k = 0; k<langs.length; k++)
   {
     fs.appendFile('views/rand.csv', JSON.stringify(langs[k])+", " + (count[k])+ "\n", function(err) {
@@ -58,6 +48,17 @@ function formatFrequency(data) {
 
 }
 
+// app.post('/graph', function(req, res){
+//   //console.log(req.body.org);
+// });
+
+var options = {
+  url: 'https://api.github.com/orgs/facebook/repos',
+  headers: {
+    'User-Agent': 'request',
+    'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
+  }
+};
 
 function callback(error, response, body) {
   if (!error && response.statusCode == 200) {
@@ -80,14 +81,13 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/auth', authRoutes);
 
 app.get('/', function(req, res){ //main output
-  res.render('index.ejs');
+  res.render('main.ejs');
 });
 
-app.post('/users/add', function(req, res){
-  console.log(req.body.username);
+app.get('/graph', function(req, res){ //main output
+  res.render('index.ejs');
 });
 
 app.listen(3000, function(){ //local host
