@@ -6,9 +6,9 @@ var app = express();
 var request = require('request');
 var d3 = require('d3');
 var fs = require('fs');
+var delay = require('delay');
 
 
-fs.truncate('views/rand.csv', 0, function(){});// clear file
 
 function formatFrequency(data) {
   var langs=[];
@@ -48,27 +48,8 @@ function formatFrequency(data) {
 
 }
 
-// app.post('/graph', function(req, res){
-//   //console.log(req.body.org);
-// });
 
-var options = {
-  url: 'https://api.github.com/orgs/facebook/repos',
-  headers: {
-    'User-Agent': 'request',
-    'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
-  }
-};
 
-function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    var info = JSON.parse(body);
-    fs.appendFile('views/rand.csv', "id,value\n", function(){});//csv file requirements
-    formatFrequency(info);
-  }
-}
-
-request(options, callback);
 
 
 
@@ -81,13 +62,41 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-
 app.get('/', function(req, res){ //main output
   res.render('main.ejs');
+
 });
 
-app.get('/graph', function(req, res){ //main output
-  res.render('index.ejs');
+// app.get('/graph', function(req, res){ //main output
+//   res.render('index.ejs');
+// });
+
+app.post('/graph', function(req, res){
+  console.log(req.body.org);
+  var orgval = 'https://api.github.com/orgs/' + req.body.org + '/repos';
+  var options = {
+    url: orgval,
+    headers: {
+      'User-Agent': 'request',
+      'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
+    }
+  };
+
+  function callback(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      var info = JSON.parse(body);
+      fs.truncate('views/rand.csv', 0, function(){});// clear file
+      fs.appendFile('views/rand.csv', "id,value\n", function(){});//csv file requirements
+      formatFrequency(info);
+    }
+  }
+
+  request(options, callback);
+  delay(800)
+    .then(() => {
+
+    res.render('index.ejs', {data: req.body});
+    });
 });
 
 app.listen(3000, function(){ //local host

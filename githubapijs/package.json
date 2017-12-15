@@ -9,6 +9,7 @@
   "dependencies": {
     "body-parser": "*",
     "d3": "^4.12.0",
+    "delay": "^2.0.0",
     "ejs": "^2.5.7",
     "express": "*",
     "express-validator": "^4.3.0",
