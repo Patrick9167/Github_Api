@@ -78,7 +78,7 @@ app.post('/graph', function(req, res){
     url: orgval,
     headers: {
       'User-Agent': 'request',
-      'Authorization':'token 247c38033b2093118936af82c8ccd9f8f316f278'
+    //  'Authorization':'token *insert token here*'
     }
   };
 

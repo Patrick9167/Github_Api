@@ -22,4 +22,4 @@ executable Access
                      , text
 
   other-modules:       Common
-                     , ShowUser
+                     , ShowUsers

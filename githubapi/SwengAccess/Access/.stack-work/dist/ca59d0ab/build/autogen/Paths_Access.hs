@@ -29,12 +29,12 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\bin"
-libdir     = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\lib\\x86_64-windows-ghc-8.0.2\\Access-0.1.0.0"
-dynlibdir  = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\lib\\x86_64-windows-ghc-8.0.2"
-datadir    = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\share\\x86_64-windows-ghc-8.0.2\\Access-0.1.0.0"
-libexecdir = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\libexec"
-sysconfdir = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\etc"
+bindir     = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\bin"
+libdir     = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\lib\\x86_64-windows-ghc-8.0.2\\Access-0.1.0.0"
+dynlibdir  = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\lib\\x86_64-windows-ghc-8.0.2"
+datadir    = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\share\\x86_64-windows-ghc-8.0.2\\Access-0.1.0.0"
+libexecdir = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\libexec"
+sysconfdir = "C:\\Users\\patri\\Documents\\TCD\\3rd year\\Sweng_Work\\githubapi\\SwengAccess\\Access\\.stack-work\\install\\3573363d\\etc"
 
 getBinDir, getLibDir, getDynLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "Access_bindir") (\_ -> return bindir)

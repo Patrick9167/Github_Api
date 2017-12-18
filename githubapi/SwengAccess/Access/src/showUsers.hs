@@ -1,9 +1,8 @@
 {-# LANGUAGE OverloadedStrings #-}
-module ShowUser (main) where
+module ShowUsers where
 
 import Common
 import Prelude ()
-
 import Data.Maybe (fromMaybe)
 
 import qualified GitHub
@@ -34,6 +33,8 @@ formatUser user =
     createdAt = GitHub.userCreatedAt user
     isHireable = GitHub.userHireable user
     bio = GitHub.userBio user
+
+
 
 formatName :: Maybe Text -> GitHub.Name GitHub.User -> Text
 formatName Nothing login = GitHub.untagName login

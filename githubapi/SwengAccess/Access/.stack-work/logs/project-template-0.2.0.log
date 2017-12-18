@@ -1,0 +1,15 @@
+Configuring project-template-0.2.0...
+Building project-template-0.2.0...
+Preprocessing library project-template-0.2.0...
+[1 of 1] Compiling Text.ProjectTemplate ( Text\ProjectTemplate.hs, .stack-work\dist\ca59d0ab\build\Text\ProjectTemplate.o )
+Installing library in
+C:\sr\snapshots\518da490\lib\x86_64-windows-ghc-8.0.2\project-template-0.2.0-IOdroMHzIhYJOJz5NINCjW
+Registering project-template-0.2.0...
+Cabal-simple_Z6RU0evB_1.24.2.0_ghc-8.0.2.exe:
+'C:\Users\patri\AppData\Local\Programs\stack\x86_64-windows\ghc-8.0.2\bin\ghc-pkg.EXE'
+exited with an error:
+project-template-0.2.0: Warning: haddock-interfaces:
+C:\sr\snapshots\518da490\doc\project-template-0.2.0\project-template.haddock
+doesn't exist or isn't a file
+ghc-pkg.EXE: C:\sr\snapshots\518da490\pkgdb\package.cache: you don't have
+permission to modify this file

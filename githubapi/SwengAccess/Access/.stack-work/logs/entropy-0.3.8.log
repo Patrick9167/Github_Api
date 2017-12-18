@@ -1,0 +1,3 @@
+[1 of 2] Compiling Main             ( C:\Users\patri\AppData\Local\Temp\stack35836\entropy-0.3.8\Setup.hs, C:\Users\patri\AppData\Local\Temp\stack35836\entropy-0.3.8\.stack-work\dist\ca59d0ab\setup\Main.o )
+[2 of 2] Compiling StackSetupShim   ( C:\sr\setup-exe-src\setup-shim-Z6RU0evB.hs, C:\Users\patri\AppData\Local\Temp\stack35836\entropy-0.3.8\.stack-work\dist\ca59d0ab\setup\StackSetupShim.o )
+Linking C:\Users\patri\AppData\Local\Temp\stack35836\entropy-0.3.8\.stack-work\dist\ca59d0ab\setup\setup.exe ...
